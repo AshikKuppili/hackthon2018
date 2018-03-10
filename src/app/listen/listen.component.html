@@ -1,0 +1,37 @@
+<!-- src/app/listen/listen.component.html -->
+<script type="text/javascript">
+         function speak () {
+            var msg = new SpeechSynthesisUtterance();
+            msg.text = myText.value;
+            window.speechSynthesis.speak(msg);
+          };
+  </script>
+  <div class="alert alert-info mt-3">
+  <h1 class="text-center">Team 5: Double</h1>
+  <div class="row mb-3">
+    <div class="col btn-group">
+      <button
+        class="btn btn-primary col-6"
+        (click)="speech.startListening()"
+        [disabled]="speech.listening">
+          <img class="icon" src="/assets/images/mic-on.png" class="img-circle" alt="Cinque Terre">{{btnLabel}}
+      </button>
+
+      <button
+        class="btn btn-danger col-6"
+        (click)="speech.abort()"
+        [disabled]="!speech.listening">
+          <img class="icon" src="/assets/images/mic-off.png" class="img-circle" alt="Cinque Terre">Stop
+      </button>
+    </div>
+  </div>
+
+</div>
+<app-words-form
+[nouns]="nouns"
+[verbs]="verbs"
+[adjs]="adjs"
+[mobiles]="mobiles"
+[cartItems]="cartItems"
+>
+</app-words-form>
