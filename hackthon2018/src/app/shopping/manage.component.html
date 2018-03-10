@@ -1,0 +1,32 @@
+<h3>Manage Product </h3>
+<form class="well">
+<input [(ngModel)]="frmProduct.id" name="txtId" placeholder="Product Id" readonly>
+<input [(ngModel)]="frmProduct.name" name="txtName" placeholder="Product Name">
+<input [(ngModel)]="frmProduct.price" name="txtPrice" placeholder="Product Price" >
+<input [(ngModel)]="frmProduct.description" name="txtDescription" placeholder="Product Description" >
+<td><button class="btn btn-primary" (click)="add()">Add</button></td>
+<td><button class="btn btn-info" (click)="edit()">Modify</button></td>
+</form>
+
+
+<p-table [value]="products">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th colspan="2">Action</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+      <tr>
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.description}}</td>
+          <td><button class="btn btn-danger" (click)="delete(product.id)">Delete</button></td>
+          <td><button class="btn btn-success" (click)="update(product)">Update</button></td>
+      </tr>
+  </ng-template>
+</p-table>

@@ -1,3 +1,4 @@
+import { Message } from './models/message';
 import { Component } from '@angular/core';
 import { SpeechService } from './speech.service';
 @Component({
@@ -6,6 +7,14 @@ import { SpeechService } from './speech.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  public message : Message;
+  public messages : Message[];
   title = 'app';
-  constructor(public speech: SpeechService) {}
+  constructor(public speech: SpeechService) {
+    this.message = new Message('', 'assets/images/user.png');
+    this.messages = [
+      new Message('Welcome to chatbot universe', 'assets/images/bot.png', new Date())
+    ];
+
+  }
 }

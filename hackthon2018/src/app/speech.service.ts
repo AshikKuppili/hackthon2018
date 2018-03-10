@@ -40,11 +40,8 @@ export class SpeechService {
           this.words$.next({type: 'mobile', 'word': mobile});
         });
       },
-      'help :help': (help) => {
-        this.zone.run(() => {
-          this.words$.next({type: 'help', 'word': help});
-        });
-      },
+      'help': function() {alert('help');
+    },
       //take control of buttons
       'go': function myFunction() {
       var x = document.getElementById("heading");
@@ -63,7 +60,7 @@ export class SpeechService {
             x.style.display = "none";
         }*/
     },
-      'pop:remove': (remove) => {
+      'remove:remove': (remove) => {
         this.zone.run(() => {
           this.words$.next({type: 'remove', 'word': remove});
         });

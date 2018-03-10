@@ -1,8 +1,7 @@
-
 import { CartItem } from './../shopping/cartitem.model';
 import { Product } from './../shopping/product.model';
 // src/app/listen/listen.component.ts
-import { Component, OnInit, OnDestroy,EventEmitter,Output,Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SpeechService } from './../speech.service';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
@@ -44,7 +43,6 @@ export class ListenComponent implements OnInit, OnDestroy {
   buttonAction:string;
   nameSub: Subscription;
   userName:string;
-  botText:string;
 
   dummyDataCount:number=1;
   constructor(public speech: SpeechService) { 
@@ -53,7 +51,7 @@ export class ListenComponent implements OnInit, OnDestroy {
     window.speechSynthesis.speak(utterance);
     
   }
-  
+
   ngOnInit() {
     this.feedData();
     this.speech.init();
@@ -151,11 +149,10 @@ export class ListenComponent implements OnInit, OnDestroy {
         if("go"==type){
           this.prepareCartList();
         }
-        console.log('help........'+type);
         if("help"==type){
           console.log('help........');
           
-          this.handleChatBot(this.botText);
+          this.handleChatBot();
         }
         console.log('name........type'+type);
         if("name"==type){
@@ -226,9 +223,6 @@ export class ListenComponent implements OnInit, OnDestroy {
       .map(helpObj => helpObj.word)
       .subscribe(
         help => {
-          this.botText=help.toString();
-          console.log('bottext:'+this.botText);
-          
           this.help = this._updateWords('help', this.help, help);
           this._setError();
           console.log('help:', help);
@@ -266,10 +260,9 @@ export class ListenComponent implements OnInit, OnDestroy {
     this.helpSub.unsubscribe();
     this.nameSub.unsubscribe();
   }
-  @Output() botMsg: EventEmitter<string> = new EventEmitter<string>();
-  handleChatBot(botText:string){
-    console.log('handle chatbot.......'+botText);
-    this.botMsg.emit(botText);
+  handleChatBot(){
+    console.log('handle chatbot.......');
+    
    }
   prepareCartList(){
     //dummy data, can be retrieved from db
