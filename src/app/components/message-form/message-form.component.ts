@@ -24,26 +24,16 @@ export class MessageFormComponent implements OnInit {
   @Input('messages')
   private messages : Message[];
 
-  @Input('botText')
-  private botText : string;
-
-
-  recogSpeech: any = '';
-
-  private data: Observable<string>;
-
   constructor(private dialogFlowService: DialogflowService, private msgService: MessageFormService ) { }
 
   ngOnInit() {
     MessageFormService.message = '';
-    this.recogSpeech = 'test';
   }
 
-  public sendMessage(botMsg:string) {
-console.log('in send msg.........'+botMsg);
+  public sendMessage() {
 
     this.message.timestamp = new Date();
-   this.message.content = botMsg;
+  // this.message.content = botMsg;
     this.messages.push(this.message);
 
     this.dialogFlowService.getResponse(this.message.content).subscribe(res => {
@@ -53,7 +43,7 @@ console.log('in send msg.........'+botMsg);
     });
 
     this.message = new Message('', 'assets/images/user.png');
-    this.stopDictation();
+    //this.stopDictation();
   }
 
 

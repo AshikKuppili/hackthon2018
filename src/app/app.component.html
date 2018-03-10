@@ -1,12 +1,17 @@
 <!-- src/app/app.component.html -->
-<div class="container">
-  <h1 class="text-center">Hackathon</h1>
+<div class="jumbotron">
+  <div class="row justify-content-center body">
+    <div class="col-6">
+<div class="container box-content well">
+  <h2 class="text-center">Hackathon</h2>
   <app-listen *ngIf="speech.speechSupported"></app-listen>
 </div>
-
-<div  class="chatform">
+<hr size="50%" style="background-color:black">
+<div  class="chatform box-content well">
   <message-list [messages]="messages"></message-list>
   <message-form [message]="message" [messages]="messages"></message-form>
 </div>
-
+</div>
+</div>
+</div>
 

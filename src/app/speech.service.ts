@@ -54,7 +54,8 @@ export class SpeechService {
       document.getElementById("gobtn").style.display="none"; 
       //document.getElementById("cancelbtn").style.background='#000000';
       //document.getElementById("btnHeader").style.display="none";
-    
+      annyang.abort();
+      this.listening = false;
       var utterance = new SpeechSynthesisUtterance('Thanks you..Collect your bill');
       window.speechSynthesis.speak(utterance);
      /*
